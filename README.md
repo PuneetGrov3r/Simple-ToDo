@@ -2,10 +2,10 @@
 
 About:
 
-1. ToDo App;  A simple and flexible ToDo app
-1. Flask-RESTful; Using RESTful API for communications
-1. Flask-jwt-extended; Using secured jwt cookies with token blacklisting for user authentication
-1. bcrypt; Using BCrypt for password encryption
+1. ToDo App           - A simple and flexible ToDo app
+1. Flask-RESTful      - Using RESTful API for communications
+1. Flask-jwt-extended - Using secured jwt cookies with token blacklisting for user authentication
+1. bcrypt             - Using BCrypt for password encryption
 1. Heroku Ready!
 
 How to run:
