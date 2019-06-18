@@ -121,20 +121,20 @@ class MailRes(Resource):
     
     @jwt_required
     def post(self):
-        extra = get_raw_jwt()['extra_content']
+        extra = parser3.parse_args()['extra_content']
         from_ = os.environ["MY_MAIL"]
-        to = get_raw_jwt()['to']
+        to = parser3.parse_args()['to']
         if(to == "user_self"):
             to = get_raw_jwt()['identity']
         data = DataModel.get_todo(get_raw_jwt()['identity'])
         lst = data.split(".:::.")
-        for i in len(lst):
+        for i in range(len(lst)):
             pri = self.__get_pri__(lst[i][10:13])
             if lst[i][14:23] == "completed":
                  lst[i] = f"Priority {pri} (Completed): {lst[25:-4]}"
             else:
                 lst[i] = f"Priority {pri}: {lst[15:-4]}"
-        data = lst.join("\n    ")
+        data = "\n    ".join(lst)
         data = "ToDo List:\n" + data + "\n\n"
         h = f"Mail (SMTP)\nFROM: {from_}\nTO: {to}\nSubject: Your ToDo List\n\n\n"
         data = h + data + extra
