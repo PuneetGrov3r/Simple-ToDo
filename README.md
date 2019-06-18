@@ -1,2 +1,2 @@
 # Simple-ToDo
-Simple ToDo app made just for fun
+Simple ToDo app created just for fun
