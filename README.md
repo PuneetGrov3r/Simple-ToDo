@@ -8,7 +8,7 @@ About:
 1. Flask-RESTful      - Using RESTful API for communications
 1. Flask-jwt-extended - Using secured jwt cookies with token blacklisting for user authentication
 1. bcrypt             - Using BCrypt for password encryption
-1. SMTP lib           - Simple mailing of your ToDos
+1. smtplib           - Simple mailing of your ToDos
 1. Heroku Ready!
 
 How to run:
