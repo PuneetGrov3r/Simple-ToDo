@@ -21,8 +21,8 @@ How to run:
 
 For Heroku app and your local app too:
 
-Set environment varibales for your instant: `APP_SETTINGS`, `DATABASE_URL`, `FLASK_ENV`, `JWT_SECRET_KEY`, `MAIL_ID`, `PORT` and `SECRET_KEY`
-
+Set environment varibales for your instant: `APP_SETTINGS`, `DATABASE_URL`, `FLASK_ENV`, `JWT_SECRET_KEY`, `MAIL_ID`, `PORT`, `SECRET_KEY`
+ and `SENDGRID_API_KEY`
 For Development environment:
 
 1. `APP_SETTINGS` : `config.DevelopmentConfig`,
