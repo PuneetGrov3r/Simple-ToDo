@@ -9,6 +9,8 @@ from flask import Response, json, jsonify
 import smtplib
 from smtplib import SMTPException
 import os
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 
 parser = reqparse.RequestParser()
 parser.add_argument('username', help = 'This field cannot be blank', required = True)
@@ -40,8 +42,8 @@ class UserRegistration(Resource):
             #set_refresh_cookies(resp, refresh_token)
             resp.status_code = 200
             return resp
-        except Exception as e:
-            res = {'message': str(e)}
+        except:
+            res = {'message': "Something went wrong"}
             return res, 500
 
 
@@ -79,8 +81,8 @@ class UserLogoutAccess(Resource):
             unset_jwt_cookies(resp)
             resp.status_code = 200
             return resp
-        except Exception as e:
-            return {'message': str(e)}, 500
+        except:
+            return {'message': "Something went wrong"}, 500
 
 
 parser2 = reqparse.RequestParser()
@@ -93,8 +95,8 @@ class UserDataRes(Resource):
             user = get_raw_jwt()['identity']
             DataModel.update_todo(user, todo)
             return {"message": "Success"}, 200
-        except Exception as e:
-            return {"Error": str(e)}, 500
+        except:
+            return {"Error": "Something went wrong"}, 500
     
     @jwt_required
     def get(self):
@@ -106,11 +108,11 @@ class UserDataRes(Resource):
                 "message": "Success"
             }
             return resp, 200
-        except Exception as e:
-            return {"Error": str(e)}, 500
+        except:
+            return {"Error": "Something went wrong"}, 500
 
 parser3 = reqparse.RequestParser()
-parser3.add_argument('extra_content', help = 'This field cannot be blank', required = True)
+parser3.add_argument('extra_content')
 parser3.add_argument('to', help = 'This field cannot be blank', required = True)
 class MailRes(Resource):
     @staticmethod
@@ -138,12 +140,17 @@ class MailRes(Resource):
         data = "ToDo List:\n" + data + "\n\n"
         h = f"Mail (SMTP)\nFROM: {from_}\nTO: {to}\nSubject: Your ToDo List\n\n\n"
         data = h + data + extra
+        message = Mail(
+                from_email=from_,
+                to_emails=to,
+                subject='Your ToDo list',
+                html_content=data)
         try:
-            with smtplib.SMTP('localhost') as smtpObj:
-                smtpObj.sendmail(from_, to, data)
-            return {"res": "Mail Sent."}, 200
-        except SMTPException as e:
-            return {"Error": str(e)}, 500
+            sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+            response = sg.send(message)
+            return response.status_code
+        except:
+            return {"Error": "Somthing went wrong."}, 500
 
 
 """
@@ -158,8 +165,8 @@ class MailRes(Resource):
 #             unset_jwt_cookies(resp)
 #             resp.status_code = 200
 #             return resp
-#         except Exception as e:
-#             res = json.dumps({'message': str(e)})
+#         except:
+#             res = json.dumps({'message': "Something went wrong"})
 #             return Response(res, status=500, mimetype='application/json')
       
       
