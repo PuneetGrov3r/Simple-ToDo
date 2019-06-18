@@ -400,7 +400,7 @@ jQuery(document).ready(function($){
     });
 
     $("#mail1btn").click(function(){
-        var extra = $("Mail1Textarea").val();
+        var extra = $("#Mail1Textarea").val();
         var to = "user_self";
         $.post({
             url: "/mail",
@@ -422,7 +422,7 @@ jQuery(document).ready(function($){
     });
 
     $("#mail2btn").click(function(){
-        var extra = $("Mail2Textarea").val();
+        var extra = $("#Mail2Textarea").val();
         var to = $("#mail2email").val();
         $.post({
             url: "/mail",
