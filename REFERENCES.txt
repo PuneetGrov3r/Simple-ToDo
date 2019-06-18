@@ -1,0 +1,17 @@
+https://stackoverflow.com/questions/44430906/flask-api-typeerror-object-of-type-response-is-not-json-serializable
+https://stackoverflow.com/questions/27759380/how-to-stop-refreshing-page-after-ajax-call
+https://stackoverflow.com/questions/11774265/how-do-you-get-a-query-string-on-flask
+https://codeburst.io/jwt-authorization-in-flask-c63c1acf4eeb
+https://www.codementor.io/olawalealadeusi896/restful-api-with-python-flask-framework-and-postgres-db-part-1-kbrwbygx5
+https://www.codementor.io/olawalealadeusi896/building-a-restful-blog-apis-using-python-and-flask-part-2-l9y8awusp
+https://www.codementor.io/olawalealadeusi896/building-a-restful-blog-apis-using-python-and-flask-part-3-lx7rt8pfk
+https://realpython.com/flask-by-example-part-2-postgres-sqlalchemy-and-alembic/
+https://stackoverflow.com/questions/32540044/html-display-current-date/32540196
+https://stackoverflow.com/questions/203198/event-binding-on-dynamically-created-elements
+https://stackoverflow.com/questions/2655925/how-to-apply-important-using-css
+https://getbootstrap.com/docs/4.3/
+https://stackoverflow.com/questions/22747193/statically-rotate-font-awesome-icons
+http://flask.pocoo.org/docs/1.0/api
+https://flask-jwt-extended.readthedocs.io/en/latest/api.html
+https://realpython.com/python-send-email/
+https://www.tutorialspoint.com/python/python_sending_email.htm

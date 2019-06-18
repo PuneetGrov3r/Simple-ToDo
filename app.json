@@ -1,0 +1,7 @@
+{
+    "name": "todo",
+    "description": "todo",
+    "image": "heroku/python",
+    "keywords": ["python", "flask" ],
+    "addons": [ "heroku-postgresql" ]
+  }
