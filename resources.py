@@ -12,14 +12,14 @@ import os
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
-parser = reqparse.RequestParser()
-parser.add_argument('username', help = 'This field cannot be blank', required = True)
-parser.add_argument('password', help = 'This field cannot be blank', required = True)
-parser.add_argument('security-question', help = 'This field cannot be blank', required = True)
-parser.add_argument('security-answer', help = 'This field cannot be blank', required = True)
+parser5 = reqparse.RequestParser()
+parser5.add_argument('username', help = 'This field cannot be blank', required = True)
+parser5.add_argument('password', help = 'This field cannot be blank', required = True)
+parser5.add_argument('security-question', help = 'This field cannot be blank', required = True)
+parser5.add_argument('security-answer', help = 'This field cannot be blank', required = True)
 class UserRegistration(Resource):
     def post(self):
-        data = parser.parse_args()
+        data = parser5.parse_args()
         if UserModel.find_by_username(data['username']):
             return {'message': 'User {} already exists'.format(data['username'])}, 400
 
@@ -63,7 +63,9 @@ class UserRegistration(Resource):
             res = {'message': "Something went wrong"}
             return res, 500
 
-
+parser = reqparse.RequestParser()
+parser.add_argument('username', help = 'This field cannot be blank', required = True)
+parser.add_argument('password', help = 'This field cannot be blank', required = True)
 class UserLogin(Resource):
     def post(self):
         data = parser.parse_args()
