@@ -405,7 +405,7 @@ jQuery(document).ready(function($){
         $.post({
             url: "/mail",
             data: {
-                "extra_content": extra,
+                "extra_content": extra + "\n",
                 "to": to
             },
             headers: {
@@ -427,7 +427,7 @@ jQuery(document).ready(function($){
         $.post({
             url: "/mail",
             data: {
-                "extra_content": extra,
+                "extra_content": extra + "\n",
                 "to": to
             },
             headers: {

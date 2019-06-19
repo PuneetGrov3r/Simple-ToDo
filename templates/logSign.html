@@ -33,7 +33,7 @@
             <div class="col-sm" id="ls-tabs">
                 
                 
-                <ul class="nav nav-tabs">
+                <ul class="nav nav-tabs" id="nav-links">
                     <li class="nav-item">
                         <a class="nav-link active login" data-toggle="collapse" role='button' href="#login" aria-expanded="true" aria-controls="login">Login</a>
                     </li>
@@ -54,7 +54,10 @@
                             <label for="password">Password</label>
                             <input type="password" class="form-control login" id="log_password" placeholder="Password">
                         </div>
-                        <button type="submit" class="btn btn-primary login">Submit</button>
+                        <div class="float-right">
+                            <a id="forgot-pass-btn">Forgot Password?</a>
+                        </div>
+                        <button type="submit" class="btn btn-primary login">Login</button>
                     </form>
                 </div>
                 
@@ -62,18 +65,59 @@
                 <div class="collapse signup" id="signup" data-parent="#ls-tabs">
                     <form>
                         <div class="form-group signup">
-                            <label for="email">Email address (SignUp)</label>
+                            <label for="email">Email address</label>
                             <input type="email" class="form-control signup" id="reg_email" aria-describedby="emailHelp" placeholder="Enter email">
                             <small id="emailHelp" class="form-text text-muted signup">We'll never share your email with anyone else.</small>
                         </div>
                         <div class="form-group signup">
-                            <label for="password">Password (SignUp)</label>
+                            <label for="password">Password</label>
                             <input type="password" class="form-control signup" id="reg_password" placeholder="Password">
                         </div>
-                        <button type="submit" class="btn btn-primary signup">Submit</button>
+                        <div class="form-group signup col-md-8">
+                            <label for="security-question">Security Question</label>
+                            <select id="security-question" class="form-control">
+                                <option selected>--Select--</option>
+                                <option>What is your hometown's name?</option>
+                                <option>What is/was your first pet's name?</option>
+                                <option>Who is your favorite author?</option>
+                                <option>Who is your favorite character in your favorite show?</option>
+                            </select>
+                        </div>
+                        <div class="form-group signup">
+                            <label for="security-answer">Answer</label>
+                            <input type="text" class="form-control" id="security-answer">
+                        </div>
+                        <button type="submit" class="btn btn-primary signup">Sign Up</button>
                     </form>
                 </div>
-            
+                
+                <div class="container" id="forgot-pass-container" style="display: none;">
+                    <form>
+                        <div class="form-group forgot">
+                            <label for="yremail">Email address</label>
+                            <input type="email" class="form-control forgot" id="yremail" aria-describedby="emailHelp" placeholder="Enter email">
+                        </div>
+                        <div class="form-group forgot col-md-8">
+                            <label for="yrsecurity-question">Security Question</label>
+                            <select id="yrsecurity-question" class="form-control">
+                                <option selected>--Select--</option>
+                                <option>What is your hometown's name?</option>
+                                <option>What is/was your first pet's name?</option>
+                                <option>Who is your favorite author?</option>
+                                <option>Who is your favorite character in your favorite show?</option>
+                            </select>
+                        </div>
+                        <div class="form-group forgot">
+                            <label for="yrsecurity-answer">Answer</label>
+                            <input type="text" class="form-control" id="yrsecurity-answer">
+                        </div>
+                        <div class="form-group forgot">
+                            <label for="new-password">New Password</label>
+                            <input type="password" class="form-control forgot" id="new-password" placeholder="New Password">
+                        </div>
+                        <button type="submit" id="change-pass" class="btn btn-primary forgot">Change Password</button>
+                    </form>
+                </div>
             
             </div>
             <div class="col-sm"></div>

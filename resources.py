@@ -15,16 +15,33 @@ from sendgrid.helpers.mail import Mail
 parser = reqparse.RequestParser()
 parser.add_argument('username', help = 'This field cannot be blank', required = True)
 parser.add_argument('password', help = 'This field cannot be blank', required = True)
-
+parser.add_argument('security-question', help = 'This field cannot be blank', required = True)
+parser.add_argument('security-answer', help = 'This field cannot be blank', required = True)
 class UserRegistration(Resource):
     def post(self):
         data = parser.parse_args()
         if UserModel.find_by_username(data['username']):
             return {'message': 'User {} already exists'.format(data['username'])}, 400
+
+        q = data['security-question']
+        ques = [
+            "What is your hometown's name?",
+            "What is/was your first pet's name?",
+            "Who is your favorite author?",
+            "Who is your favorite character in your favorite show?"
+        ]
+
+        sec_q = -1
+        for i, el in enumerate(ques):
+            if el == q:
+                sec_q = i
+                break
         
         new_user = UserModel(
             username = data['username'],
-            password = UserModel.generate_hash(data['password'])
+            password = UserModel.generate_hash(data['password']),
+            question = sec_q,
+            answer = data['security-answer']
         )
         
         try:
@@ -151,6 +168,40 @@ class MailRes(Resource):
             return response.status_code
         except:
             return {"Error": "Somthing went wrong."}, 500
+
+parser4 = reqparse.RequestParser()
+parser4.add_argument('email', help = 'This field cannot be blank', required = True)
+parser4.add_argument('security-question', help = 'This field cannot be blank', required = True)
+parser4.add_argument('security-answer', help = 'This field cannot be blank', required = True)
+parser4.add_argument('new-password', help = 'This field cannot be blank', required = True)
+class ForgotPass(Resource):
+    def post(self):
+        name = parser4.parse_args()['email']
+        q = parser4.parse_args()['security-question']
+        sec_a = parser4.parse_args()['security-answer']
+        password = parser4.parse_args()['new-password']
+
+        ques = [
+            "What is your hometown's name?",
+            "What is/was your first pet's name?",
+            "Who is your favorite author?",
+            "Who is your favorite character in your favorite show?"
+        ]
+
+        sec_q = -1
+        for i, el in enumerate(ques):
+            if el == q:
+                sec_q = i
+                break
+
+
+        try:
+            if UserModel.check_security_qa(name, sec_q, sec_a):
+                UserModel.update_password(name, UserModel.generate_hash(password))
+            else:
+                return {"res": "Failed Check"}, 404
+        except:
+            return {"res": "Something went wrong"}, 500
 
 
 """

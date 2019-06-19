@@ -10,11 +10,15 @@ class UserModel(db.Model):
     username = db.Column(db.String(120), unique = True, nullable = False)
     password = db.Column(db.String(120), nullable = False)
     admin = db.Column(db.Integer, nullable=False)
+    security_question = db.Column(db.Integer, nullable=False)
+    security_answer = db.Column(db.String(100), nullable=False)
 
-    def __init__(self, username, password):
+    def __init__(self, username, password, question, answer):
         self.username = username
         self.password = password
         self.admin = 0
+        self.security_question = question
+        self.security_answer = answer
 
     def __repr__(self):
         return '<id {}>'.format(self.id)
@@ -36,6 +40,17 @@ class UserModel(db.Model):
     @classmethod
     def find_by_username(cls, username):
         return cls.query.filter_by(username = username).first()
+
+    @classmethod
+    def check_security_qa(cls, username, question, answer):
+        p = cls.query.filter_by(username=username).first()
+        if p.security_question==question and p.security_answer==answer: return True
+        else: return False
+
+    @classmethod
+    def update_password(cls, username, new_password):
+        cls.query.filter_by(username=username).update({"password": new_password})
+        db.session.commit()
 
     
     #@classmethod

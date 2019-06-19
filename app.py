@@ -30,7 +30,7 @@ app.config['JWT_TOKEN_LOCATION'] = ['cookies']
 #app.config['JWT_ACCESS_COOKIE_PATH'] = '/api/'
 #app.config['JWT_REFRESH_COOKIE_PATH'] = '/token/refresh'
 app.config['JWT_COOKIE_CSRF_PROTECT'] = True
-app.config['JWT_COOKIE_SECURE'] = False
+app.config['JWT_COOKIE_SECURE'] = True
 jwt = JWTManager(app)
 
 @jwt.token_in_blacklist_loader
@@ -54,6 +54,7 @@ api.add_resource(resources.UserLogin, '/login')
 api.add_resource(resources.UserLogoutAccess, '/logout/access')
 api.add_resource(resources.UserDataRes, '/list')
 api.add_resource(resources.MailRes, '/mail')
+api.add_resource(resources.ForgotPass, '/forgotpass')
 #api.add_resource(resources.UserLogoutRefresh, '/logout/refresh')
 #api.add_resource(resources.TokenRefresh, '/token/refresh')
 #api.add_resource(resources.AllUsers, '/users')
